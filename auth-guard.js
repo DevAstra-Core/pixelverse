@@ -21,6 +21,25 @@ export async function requireAuth() {
     if (!session) {
       console.warn("No valid session. Redirecting to login...");
       window.location.replace("login.html");
+      return;
+    }
+
+    // Safety net: if signup's profile insert ever failed, this repairs
+    // it automatically instead of leaving the user stuck on a page that
+    // waits forever for data that will never exist.
+    const { data: profile } = await client
+      .from("profiles")
+      .select("id")
+      .eq("id", session.user.id)
+      .maybeSingle();
+
+    if (!profile) {
+      console.warn("No profile row found — creating one now.");
+      await client.from("profiles").insert({
+        id: session.user.id,
+        username: session.user.email?.split("@")[0] || "user",
+        email: session.user.email,
+      });
     }
   }
 
