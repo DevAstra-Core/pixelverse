@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign-in</title>
+    <link rel="stylesheet" href="sign-up.css">
+</head>
+<body>
+    <main>
+        <div class="cover-background">
+            <img src="/assets/cover-background.jpg" style="width: 100%; height: 100%; object-fit: cover; ">
+        </div>
+        
+        
+        
+        <div class="sign-in-container">
+            <form id="signup-form" class="sign-in-form">
+                <div class="brand-logo" style="font-size:16px; pointer-events:none;">
+                    <p>PIXEL VERSE</p>
+                </div>
+                <div class="sign-in-box">
+                    <span>Create Account</span>
+                </div>
+                <div class="sign-in-feilds">
+                    <input type="text" placeholder="Username" id="username" class="sign-in-input" required>
+                    <input type="email" placeholder="Email" id="email" class="sign-in-input" required>
+                    <input type="text" placeholder="Password" id="password" class="sign-in-input" required>
+                    <p id="error-message" style="color: #ff4d4d; font-size: 14px; margin: 8px 0;"></p>
+                    <button type="submit" id="create-account-btn">Create Account</button>
+                </div>
+                <span id="login-link" style="cursor: pointer; text-decoration: underline;" onclick="window.location.href='login.html'">already have an account?</span>
+            </form>
+
+        </div>
+    </main>
+    <script type="module" src="sign-up.js"></script>
+</body>
+</html>

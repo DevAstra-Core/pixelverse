@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <main>
+        <div class="cover-background">
+            <img src="/assets/background.jpg" style="width: 100%; height: 100%; object-fit: cover; ">
+        </div>
+        
+        
+        
+        <div class="log-in-container">
+            <form id="login-form" class="log-in-form">
+                <div class="brand-logo" style="font-size:16px; pointer-events:none;">
+                    <p>PIXEL VERSE</p>
+                </div>
+                <div class="log-in-box">
+                    <span>Welcome back</span>
+                </div>
+                <div class="log-in-feilds">
+                    <input type="email" placeholder="Email" id="email" class="log-in-input" required>
+                    <input type="text" placeholder="Password" id="password" class="log-in-input" required>
+                    <button type="submit" id="login-btn">Login</button>
+                    <p id="error-message" style="color: #ff4d4d; font-size: 13px; margin: 8px 0; min-height: 18px;"></p>
+                </div>
+                <span id="forget-password" style="cursor: pointer; text-decoration: underline;">forget password?</span>
+                <span id="login-link" style="cursor: pointer; text-decoration: underline;" onclick="window.location.href='sign-up.html'">don't have an account?</span>
+            </form>
+
+
+
+            <div class="verification-form-container">
+                <div class="back">
+                    <svg viewBox="0 0 512 512" id="back-to-login" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:20px;}</style> </defs> <g data-name="Layer 2" id="Layer_2"> <g data-name="E416, back, Media, media player, multimedia, player" id="E416_back_Media_media_player_multimedia_player"> <circle class="cls-1" cx="256" cy="256" r="246"></circle> <polyline class="cls-1" points="333.82 100.37 178.18 256 333.82 411.63"></polyline> </g> </g> </g></svg>
+                    <p>Password Reset</p>
+                </div>
+                <div class="verification-form">
+                    <p id="reset-status-text" style="margin-top: 15px; font-size: 14px;">
+                        A password reset link has been dispatched to your email address. Please check your inbox.
+                    </p>
+                    <input type="text" id="otp-input" placeholder="Enter 8-digit code" maxlength="8" class="log-in-input">
+                    <p id="otp-error-message" style="color: #ff4d4d; font-size: 13px; margin: 8px 0; min-height: 18px;"></p>
+                    <button type="submit" id="verify-otp-btn">Verify</button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    <script type="module" src="login.js"></script>
+</body>
+</html>

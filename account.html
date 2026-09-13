@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="account.css">
+</head>
+<body>
+    <main>
+        <div class="settings-top-bar">
+            <div class="settings-top-bar-container">
+                <button id="back-to-home">
+                    <svg viewBox="0 0 512 512" id="back-icon"  xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:20px;}</style> </defs> <g data-name="Layer 2" id="Layer_2"> <g data-name="E416, back, Media, media player, multimedia, player" id="E416_back_Media_media_player_multimedia_player"> <circle class="cls-1" cx="256" cy="256" r="246"></circle> <polyline class="cls-1" points="333.82 100.37 178.18 256 333.82 411.63"></polyline> </g> </g> </g></svg>
+
+                </button>
+                <p>Settings</p>
+            </div>
+        </div>
+
+<div class="setting-wrapper">
+
+        <section id="profile">
+            <div class="user-data-wrapper" style="font-size: 30px;">
+                <p>HI! <span id="username">loading</span></p> 
+                <p id="user-mail" style="font-size: 20px;">loading</p>
+            </div>
+        </section>
+
+        <div class="child-lock-container">
+            <p>Child Lock</p>
+            <button id="child-lock-toggle">Enable</button>
+        </div>
+        
+
+        <div class="account-username-data">
+            <div class="holder">
+                <p>Change Username</p>
+                <svg viewBox="0 0 24 24" id="drop-down-password-container"  fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#ffffff"></path> </g></svg>
+            
+            </div>
+            
+            <div class="user-data-container">
+                <div class="username-change-container">
+                    <p>Enter new username</p>
+                    <input type="text" id="new-username" placeholder="type new username">
+                </div>
+                
+                <button id="change-username">confirm</button>
+            </div>
+        </div>
+
+
+        <div class="account-password-data">
+            <div class="holder">
+                <p>Change Password</p>
+                <svg viewBox="0 0 24 24" id="drop-down-password-container"  fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#ffffff"></path> </g></svg>
+            </div>
+            
+            <div class="user-password-container">
+                <div class="password-change-container">
+                    <p>Enter new Password</p>
+                    <input type="password" id="new-password" placeholder="type new password">
+                </div>
+                <div class="password-change-container">
+                    <p>Confirm Password</p>
+                    <input type="password" id="confirm-password" placeholder="confirm new password">
+                </div>
+                <button id="change-user-password">confirm</button>
+            </div>
+        </div>
+
+        
+        <div class="recommendation-toggle-container">
+            <p>Adult Content</p>
+            <button id="toggle-adult-content">enable</button>
+        </div>
+        <div class="user-beloved-container">
+            <div class="card">
+                <button class="toggle-btn" id="toggleBtn">
+                    User Progress
+                    <span class="arrow">▼</span>
+                </button>
+
+                <div class="list" id="list">
+                    <ul>
+                    <li><span class="category">Action</span><span class="score">0</span></li>
+                    <li><span class="category">Horror</span><span class="score">0</span></li>
+                    <li><span class="category">Adventure</span><span class="score">0</span></li>
+                    <li><span class="category">Mystery</span><span class="score">0</span></li>
+                    <li><span class="category">Animation</span><span class="score">0</span></li>
+                    <li><span class="category">Romance</span><span class="score">0</span></li>
+                    <li><span class="category">Comedy</span><span class="score">0</span></li>
+                    <li><span class="category">Sci-Fi (Science Fiction)</span><span class="score">0</span></li>
+                    <li><span class="category">Crime</span><span class="score">0</span></li>
+                    <li><span class="category">Thriller</span><span class="score">0</span></li>
+                    <li><span class="category">Documentary</span><span class="score">0</span></li>
+                    <li><span class="category">War</span><span class="score">0</span></li>
+                    <li><span class="category">Drama</span><span class="score">0</span></li>
+                    <li><span class="category">Western</span><span class="score">0</span></li>
+                    <li><span class="category">Family / Kids</span><span class="score">0</span></li>
+                    <li><span class="category">Music / Musical</span><span class="score">0</span></li>
+                    <li><span class="category">Fantasy</span><span class="score">0</span></li>
+                    <li><span class="category">History or Biography</span><span class="score">0</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <div class="logout-wrapper">
+            <button id="logout-user">LOGOUT</button>
+        </div>
+</div>
+
+    </main>
+    <script type="module" src="account.js"></script>
+</body>
+</html>

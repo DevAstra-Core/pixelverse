@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    background-color: #000000de
+}
+.cover-background{
+    height: 65%;
+    width:100%;
+    object-fit: cover;
+}
+.sign-in-container{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    background: #00000012;
+    backdrop-filter: blur(1px);
+}
+.sign-in-form{
+min-height: 50vh;
+    min-width: 20%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 10px;
+    justify-content: space-between;
+    font-size: 15px;
+    padding: 30px 20px;
+    box-shadow: #00000073 0px 0px 30px;
+}
+.sign-in-box{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin:10px 0;
+    font-family: cursive;
+    pointer-events: none;
+}
+.sign-in-feilds{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+.sign-in-input{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #0000006e;
+    padding: 10px;
+}
+#create-account-btn{
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    background: #0093ff;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}

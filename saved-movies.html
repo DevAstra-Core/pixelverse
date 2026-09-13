@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved movies</title>
+    <link rel="stylesheet" href="saved-movies.css">
+</head>
+<body>
+    <main>
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <button id="back-to-home" >
+                    <svg viewBox="0 0 512 512" id="back-icon" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:20px;}</style> </defs> <g data-name="Layer 2" id="Layer_2"> <g data-name="E416, back, Media, media player, multimedia, player" id="E416_back_Media_media_player_multimedia_player"> <circle class="cls-1" cx="256" cy="256" r="246"></circle> <polyline class="cls-1" points="333.82 100.37 178.18 256 333.82 411.63"></polyline> </g> </g> </g></svg>
+                </button>
+                <p>Saved movies</p>
+            </div>
+
+            <div class="like-wishlist-toggle-container">
+                <button id="wishlist-toggle" class="toggle-button active">Wishlist</button>
+                <button id="liked-toggle" class="toggle-button">Liked</button>
+            </div>
+        </div>
+
+        <section id="wishlisted-movies-container" class="saved-box active-box">
+            <!-- wishlist cards inserted here by JS -->
+        </section>
+        <section id="liked-movies-container" class="saved-box">
+            <!-- liked cards inserted here by JS -->
+        </section>
+    </main>
+    <script type="module" src="saved-movies.js"></script>
+</body>
+</html>

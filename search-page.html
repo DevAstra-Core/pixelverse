@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search movies</title>
+    <link rel="stylesheet" href="search-page.css">
+</head>
+<body>
+    <main>
+        <div class="search-top-bar">
+            <div class="search-top-bar-container">
+                <button id="back-to-home" >
+                    <svg viewBox="0 0 512 512" id="back-icon" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:20px;}</style> </defs> <g data-name="Layer 2" id="Layer_2"> <g data-name="E416, back, Media, media player, multimedia, player" id="E416_back_Media_media_player_multimedia_player"> <circle class="cls-1" cx="256" cy="256" r="246"></circle> <polyline class="cls-1" points="333.82 100.37 178.18 256 333.82 411.63"></polyline> </g> </g> </g></svg>
+                </button>
+                <p>Search</p>
+            </div>
+
+            <div class="search-input-container">
+                <input type="text" id="search-input" placeholder="Search movies..." autocomplete="off">
+            </div>
+        </div>
+
+        <section id="recommedation-movies-container" class="search-page-screen active">
+            <p style="padding: 15px 0 5px 10px; font-size: 18px; font-family: cursive;">Recommendations</p>
+            <div class="recommendation-wrapper">
+                <!-- recommendation cards inserted by JS -->
+            </div>
+        </section>
+
+        <section id="searched-result-movies-container" class="search-page-screen">
+            <p style="padding: 15px 0 5px 10px; font-size: 20px; font-family: cursive;">Results</p>
+            <div class="result-wrapper">
+                <!-- search result cards inserted by JS -->
+            </div>
+        </section>
+
+    </main>
+    <script type="module" src="search.js"></script>
+</body>
+</html>
