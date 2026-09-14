@@ -2,7 +2,7 @@ import { requireAuth } from "./auth-guard.js";
 import { API_BASE } from "./config.js";
 requireAuth();
 
-const PAGE_LOADER_MS = 2000;
+const PAGE_LOADER_MS = 3500;
 setTimeout(() => {
   const loader = document.getElementById("page-loader");
   if (loader) loader.classList.add("loader-hidden");
