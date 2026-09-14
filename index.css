@@ -476,3 +476,37 @@ main{
 .directors-card-container::-webkit-scrollbar {
     display: none;               /* Chrome, Safari, new Edge */
 }
+
+
+
+
+
+
+.trending-moviecard-template,
+.top-picks-moviecard-template,
+.hindi-thriller-moviecard-template,
+.best-of-2026-moviecard-template,
+.horror-moviecard-template,
+.marvel-moviecard-template,
+.action-moviecard-template,
+.hindi-popular-moviecard-template,
+.south-movies-moviecard-template,
+.directors-cards-template {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.trending-moviecard-template.card-visible,
+.top-picks-moviecard-template.card-visible,
+.hindi-thriller-moviecard-template.card-visible,
+.best-of-2026-moviecard-template.card-visible,
+.horror-moviecard-template.card-visible,
+.marvel-moviecard-template.card-visible,
+.action-moviecard-template.card-visible,
+.hindi-popular-moviecard-template.card-visible,
+.south-movies-moviecard-template.card-visible,
+.directors-cards-template.card-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

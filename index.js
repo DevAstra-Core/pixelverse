@@ -116,10 +116,11 @@ function renderCarousel(wrapperEl, movies, cardClass, posterClass, detailsClass)
   if (!wrapperEl) return;
   wrapperEl.innerHTML = "";
 
-  movies.forEach((movie) => {
+  movies.forEach((movie, index) => {
     const card = document.createElement("div");
     card.className = cardClass;
     card.style.cursor = "pointer";
+    card.style.transitionDelay = `${index * 0.05}s`; // stagger, applied once revealed
     card.addEventListener("click", () => {
       window.location.href = `movie.html?id=${movie.id}`;
     });
@@ -148,6 +149,23 @@ function renderCarousel(wrapperEl, movies, cardClass, posterClass, detailsClass)
   });
 }
 
+
+function observeCarouselReveal(containerEl) {
+  if (!containerEl) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const cards = containerEl.children;
+        Array.from(cards).forEach((card) => card.classList.add("card-visible"));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(containerEl);
+}
+
 // ---------- Generic fetch + shuffle + render pipeline for one carousel ----------
 async function loadCarousel(url, wrapperSelector, cardClass, posterClass, detailsClass, count = 15) {
   const wrapperEl = document.querySelector(wrapperSelector);
@@ -163,6 +181,7 @@ async function loadCarousel(url, wrapperSelector, cardClass, posterClass, detail
     const pool = data.results || [];
     const shuffled = shuffle(pool).slice(0, count);
     renderCarousel(wrapperEl, shuffled, cardClass, posterClass, detailsClass);
+    observeCarouselReveal(wrapperEl);
   } catch (err) {
     console.error(`Failed to load carousel from ${url}:`, err);
     if (wrapperEl) wrapperEl.innerHTML = "<p style='opacity:0.6; padding:10px;'>Couldn't load right now.</p>";
@@ -339,6 +358,7 @@ async function loadDirectors() {
     const card = document.createElement("div");
     card.className = "directors-cards-template";
     card.style.cursor = "pointer";
+    card.style.transitionDelay = `${i * 0.05}s`;
     card.addEventListener("click", () => {
       window.location.href = `director-page.html?type=director&name=${encodeURIComponent(name)}`;
     });
@@ -360,6 +380,8 @@ async function loadDirectors() {
     card.appendChild(titleDiv);
     wrapperEl.appendChild(card);
   });
+
+  observeCarouselReveal(wrapperEl);
 }
 
 // ---------- "See all" arrow buttons -> browse page ----------
@@ -510,3 +532,10 @@ async function loadTopPicks() {
 }
 
 loadTopPicks()
+
+
+
+
+
+
+
