@@ -31,10 +31,10 @@ html, body {
 }
 /* From Uiverse.io by amjad_3313 */ 
 .loader {
-  --cloud-color: #4387f4;
-  --arrows-color: #80b1ff;
+  --cloud-color: #ffffff;
+  --arrows-color: #d7d7d7;
   --time-animation: 1s;
-  transform: scale(1); /* You can change the size */
+  transform: scale(3); /* You can change the size */
 }
 
 .loader #cloud {
