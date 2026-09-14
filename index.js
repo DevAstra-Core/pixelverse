@@ -521,21 +521,16 @@ async function loadTopPicks() {
       const trendingData = await trendingRes.json();
       const shuffled = shuffle(trendingData.results || []).slice(0, 15);
       renderCarousel(wrapperEl, shuffled, "top-picks-moviecard-template", "top-picks-movie-card-poster", "top-picks-movie-card-details");
+      observeCarouselReveal(wrapperEl);
       return;
     }
 
     renderCarousel(wrapperEl, data.results.slice(0, 15), "top-picks-moviecard-template", "top-picks-movie-card-poster", "top-picks-movie-card-details");
+    observeCarouselReveal(wrapperEl);
   } catch (err) {
     console.error("Failed to load top picks:", err);
     wrapperEl.innerHTML = "<p style='opacity:0.6; padding:10px;'>Couldn't load right now.</p>";
   }
 }
 
-loadTopPicks()
-
-
-
-
-
-
-
+loadTopPicks();
