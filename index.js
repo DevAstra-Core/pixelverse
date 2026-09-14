@@ -2,6 +2,16 @@ import { requireAuth } from "./auth-guard.js";
 import { API_BASE } from "./config.js";
 requireAuth();
 
+const PAGE_LOADER_MS = 2000;
+setTimeout(() => {
+  const loader = document.getElementById("page-loader");
+  if (loader) loader.classList.add("loader-hidden");
+}, PAGE_LOADER_MS);
+
+
+
+
+
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 
 
