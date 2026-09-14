@@ -305,12 +305,16 @@ async function loadHero() {
     const pool = data.results || [];
     if (pool.length === 0) return;
 
-    let index = (getCacheWindowSeed() + getUserSeed()) % pool.length;
+    let index = Math.floor(Math.random() * pool.length);
     renderHeroMovie(pool[index], session);
 
     if (heroRotateTimer) clearInterval(heroRotateTimer);
     heroRotateTimer = setInterval(() => {
-      index = (index + 1) % pool.length;
+      let next;
+      do {
+        next = Math.floor(Math.random() * pool.length);
+      } while (next === index && pool.length > 1); // avoid repeating the same movie back-to-back
+      index = next;
       renderHeroMovie(pool[index], session);
     }, HERO_ROTATE_INTERVAL_MS);
 
