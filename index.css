@@ -34,7 +34,7 @@ html, body {
   --cloud-color: #ffffff;
   --arrows-color: #d7d7d7;
   --time-animation: 1s;
-  transform: scale(3); /* You can change the size */
+  transform: scale(1.5); /* You can change the size */
 }
 
 .loader #cloud {
