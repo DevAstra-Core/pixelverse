@@ -28,14 +28,22 @@
                         <img src="assets/inception.jpg" id="movie-poster" style="height: 35vh; border-radius: 10px;" alt="">
                     </div>
 
+                    <div class="auto-trailer-box" id="auto-trailer-box" style="display: none;">
+                        <div id="auto-trailer-player"></div>
+                        <button id="trailer-toggle-btn" class="trailer-toggle-btn">
+                            <svg id="trailer-pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+                            <svg id="trailer-play-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><polygon points="6,4 20,12 6,20"/></svg>
+                        </button>
+                    </div>
+
                     <div class="movie-loading-box" id="movie-loading-box" style="display: none;">
-                                <div id="trailer-loading-state">
-                                    <div class="spinner"></div>
-                                    <p>Loading...</p>
-                                </div>
-                                <div id="trailer-error-state" style="display: none;">
-                                    <p>Due to a server issue, video is unavailable right now.</p>
-                                </div>
+                        <div id="trailer-loading-state">
+                            <div class="spinner"></div>
+                            <p>Loading...</p>
+                        </div>
+                        <div id="trailer-error-state" style="display: none;">
+                            <p>Due to a server issue, video is unavailable right now.</p>
+                        </div>
                     </div>
 
                 </div>

@@ -268,43 +268,79 @@ likeBtn.addEventListener("click", async () => {
 });
 
 // ---------- Play/Pause toggle ----------
-let isPlaying = false;
+let ytPlayer = null;
+let trailerIsPlaying = false;
 
-playBtn.addEventListener("click", async () => {
-  if (!isPlaying) {
-    isPlaying = true;
-    playBtn.textContent = "pause";
-
-    const token = await getToken();
-    if (token) {
-      fetch(`${API_BASE}/api/library/watched`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({ tmdb_movie_id: Number(tmdbMovieId), watch_progress: 0 }),
-      }).catch(err => console.error("Failed to log watched:", err));
+function loadYouTubeAPI() {
+  return new Promise((resolve) => {
+    if (window.YT && window.YT.Player) {
+      resolve();
+      return;
     }
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+    window.onYouTubeIframeAPIReady = () => resolve();
+  });
+}
 
-    posterBox.style.display = "none";
-    loadingBox.style.display = "flex";
-    loadingState.style.display = "flex";
-    errorState.style.display = "none";
+async function autoPlayTrailer() {
+  if (!tmdbMovieId) return;
 
-    setTimeout(() => {
-      loadingState.style.display = "none";
-      errorState.style.display = "flex";
-    }, 1500);
+  const posterBoxEl = document.getElementById("movie-poster-box");
+  const trailerBox = document.getElementById("auto-trailer-box");
+  const toggleBtn = document.getElementById("trailer-toggle-btn");
+  const pauseIcon = document.getElementById("trailer-pause-icon");
+  const playIcon = document.getElementById("trailer-play-icon");
 
-  } else {
-    isPlaying = false;
-    playBtn.textContent = "play";
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    loadingBox.style.display = "none";
-    posterBox.style.display = "flex";
+  try {
+    const headers = await authHeaders();
+    const response = await fetchWithTimeout(`${API_BASE}/api/movies/${tmdbMovieId}/trailer`, 10000, headers);
+    const data = await response.json();
+
+    if (!data.youtube_key) return;
+
+    await loadYouTubeAPI();
+
+    posterBoxEl.style.display = "none";
+    trailerBox.style.display = "block";
+
+    ytPlayer = new YT.Player("auto-trailer-player", {
+      videoId: data.youtube_key,
+      playerVars: {
+        autoplay: 1,
+        mute: 1,
+        controls: 0,
+        modestbranding: 1,
+        rel: 0,
+      },
+      events: {
+        onReady: () => {
+          trailerIsPlaying = true;
+        },
+      },
+    });
+
+    toggleBtn.addEventListener("click", () => {
+      if (trailerIsPlaying) {
+        ytPlayer.pauseVideo();
+        pauseIcon.style.display = "none";
+        playIcon.style.display = "block";
+        trailerIsPlaying = false;
+      } else {
+        ytPlayer.playVideo();
+        pauseIcon.style.display = "block";
+        playIcon.style.display = "none";
+        trailerIsPlaying = true;
+      }
+    });
+
+  } catch (err) {
+    console.error("Auto trailer failed to load:", err);
   }
-});
+}
 
 // ---------- Skeleton loading cards ----------
 function renderSkeletonCards(wrapperEl, count = 6) {
@@ -414,7 +450,7 @@ loadMovieEnrichment();
 loadLibraryStatus();
 loadSimilarMovies();
 loadSuggestedMovies();
-
+autoPlayTrailer();
 
 
 //back to previous page
