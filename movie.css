@@ -121,9 +121,13 @@ display: flex;
 }
 
 .auto-trailer-box iframe {
+    position: absolute;
+    top: -60px;           /* shifts the title bar above the visible area */
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% + 120px);  /* oversized so the extra height covers the shift */
     border: none;
+    pointer-events: none;  /* blocks clicks on YouTube's own overlay UI */
 }
 
 .trailer-toggle-btn {

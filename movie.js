@@ -268,6 +268,72 @@ likeBtn.addEventListener("click", async () => {
 });
 
 // ---------- Play/Pause toggle ----------
+
+// ---------- Play/Pause toggle ----------
+let isPlaying = false;
+let wasTrailerShowing = false;
+
+playBtn.addEventListener("click", async () => {
+  const trailerBox = document.getElementById("auto-trailer-box");
+
+  if (!isPlaying) {
+    isPlaying = true;
+    playBtn.textContent = "pause";
+
+    const token = await getToken();
+    if (token) {
+      fetch(`${API_BASE}/api/library/watched`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({ tmdb_movie_id: Number(tmdbMovieId), watch_progress: 0 }),
+      }).catch(err => console.error("Failed to log watched:", err));
+    }
+
+    wasTrailerShowing = trailerBox.style.display !== "none";
+    if (wasTrailerShowing && ytPlayer) {
+      ytPlayer.pauseVideo();
+      trailerBox.style.display = "none";
+    }
+
+    posterBox.style.display = "none";
+    loadingBox.style.display = "flex";
+    loadingState.style.display = "flex";
+    errorState.style.display = "none";
+
+    setTimeout(() => {
+      loadingState.style.display = "none";
+      errorState.style.display = "flex";
+    }, 1500);
+
+  } else {
+    isPlaying = false;
+    playBtn.textContent = "play";
+
+    loadingBox.style.display = "none";
+
+    if (wasTrailerShowing && ytPlayer) {
+      trailerBox.style.display = "block";
+      ytPlayer.playVideo();
+    } else {
+      posterBox.style.display = "flex";
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 let ytPlayer = null;
 let trailerIsPlaying = false;
 
@@ -315,13 +381,16 @@ async function autoPlayTrailer() {
         controls: 0,
         modestbranding: 1,
         rel: 0,
+        iv_load_policy: 3,   // hides annotations
+        disablekb: 1,        // disables keyboard shortcuts
+        fs: 0,                // hides fullscreen button
       },
-      events: {
-        onReady: () => {
-          trailerIsPlaying = true;
+        events: {
+          onReady: () => {
+            trailerIsPlaying = true;
+          },
         },
-      },
-    });
+      });
 
     toggleBtn.addEventListener("click", () => {
       if (trailerIsPlaying) {
