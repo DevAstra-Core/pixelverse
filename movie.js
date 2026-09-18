@@ -268,8 +268,6 @@ likeBtn.addEventListener("click", async () => {
 });
 
 // ---------- Play/Pause toggle ----------
-
-// ---------- Play/Pause toggle ----------
 let isPlaying = false;
 let wasTrailerShowing = false;
 
@@ -296,6 +294,7 @@ playBtn.addEventListener("click", async () => {
     if (wasTrailerShowing && ytPlayer) {
       ytPlayer.pauseVideo();
       trailerBox.style.display = "none";
+      stopTrailerTimer();
     }
 
     posterBox.style.display = "none";
@@ -317,6 +316,7 @@ playBtn.addEventListener("click", async () => {
     if (wasTrailerShowing && ytPlayer) {
       trailerBox.style.display = "block";
       ytPlayer.playVideo();
+      startTrailerTimer();
     } else {
       posterBox.style.display = "flex";
     }
@@ -324,14 +324,25 @@ playBtn.addEventListener("click", async () => {
 });
 
 
+// ---------- Trailer elapsed-time timer ----------
+let trailerTimerInterval = null;
 
+function startTrailerTimer() {
+  const timerEl = document.getElementById("trailer-timer");
+  if (!timerEl) return;
+  clearInterval(trailerTimerInterval);
+  trailerTimerInterval = setInterval(() => {
+    if (!ytPlayer || typeof ytPlayer.getCurrentTime !== "function") return;
+    const seconds = Math.floor(ytPlayer.getCurrentTime());
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    timerEl.textContent = `${mins}:${secs.toString().padStart(2, "0")}`;
+  }, 500);
+}
 
-
-
-
-
-
-
+function stopTrailerTimer() {
+  clearInterval(trailerTimerInterval);
+}
 
 
 let ytPlayer = null;
@@ -388,6 +399,7 @@ async function autoPlayTrailer() {
         events: {
           onReady: () => {
             trailerIsPlaying = true;
+            startTrailerTimer();
           },
         },
       });
@@ -404,6 +416,26 @@ async function autoPlayTrailer() {
         playIcon.style.display = "none";
         trailerIsPlaying = true;
       }
+    });
+
+    // ---------- Mute/unmute control ----------
+    const muteBtn = document.getElementById("trailer-mute-btn");
+    const mutedIcon = document.getElementById("trailer-muted-icon");
+    const unmutedIcon = document.getElementById("trailer-unmuted-icon");
+    let trailerMuted = true;
+
+    muteBtn.addEventListener("click", () => {
+      if (!ytPlayer) return;
+      if (trailerMuted) {
+        ytPlayer.unMute();
+        mutedIcon.style.display = "none";
+        unmutedIcon.style.display = "block";
+      } else {
+        ytPlayer.mute();
+        mutedIcon.style.display = "block";
+        unmutedIcon.style.display = "none";
+      }
+      trailerMuted = !trailerMuted;
     });
 
   } catch (err) {

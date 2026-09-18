@@ -153,7 +153,23 @@ display: flex;
     width: 18px;
     height: 18px;
 }
+#trailer-mute-btn {
+    right: 60px;  /* sits just left of the play/pause toggle, same row */
+}
 
+.trailer-timer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #000000aa;
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+    padding: 3px 8px;
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 2;
+}
 .auto-trailer-box:hover .trailer-toggle-btn {
     opacity: 1;
 }
