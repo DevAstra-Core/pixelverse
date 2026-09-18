@@ -114,6 +114,7 @@ display: flex;
 
 .auto-trailer-box {
     position: relative;
+    width: 75%;          /* ADD THIS LINE */
     height: 35vh;
     border-radius: 10px;
     overflow: hidden;
