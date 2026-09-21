@@ -1,0 +1,29 @@
+{
+    "enabled": true,
+
+    "selectors": [
+        ".ad-container",
+        ".advertisement",
+        ".advertisement-container",
+        ".advertising",
+        ".popup-ad",
+        ".banner-ad",
+        ".third-party-ad",
+        "[data-ad]",
+        "[data-advertisement]",
+
+        "ins.adsbygoogle",
+        "[id^='google_ads_iframe']",
+        "[id^='div-gpt-ad']",
+
+        "iframe[src*='doubleclick.net']",
+        "iframe[src*='googlesyndication.com']",
+        "iframe[src*='googleadservices.com']"
+    ],
+
+    "iframeDomains": [
+        "doubleclick.net",
+        "googlesyndication.com",
+        "googleadservices.com"
+    ]
+}

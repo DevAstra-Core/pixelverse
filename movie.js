@@ -3,6 +3,7 @@ import { API_BASE } from "./config.js";
 import { requireAuth } from "./auth-guard.js";
 
 requireAuth();
+startPixelVerseAdBlocker();
 
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 
@@ -562,3 +563,25 @@ document.getElementById("back-to-home").addEventListener("click", () => {
     window.location.href = "index.html";
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
