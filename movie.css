@@ -385,7 +385,11 @@ display: flex;
     
     main {
     min-height: 100vh;}
-
+        #container-movie {
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;}
     .movie-top-bar-container {
     font-size: 3vh;}
 
