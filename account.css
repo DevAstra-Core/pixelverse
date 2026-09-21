@@ -297,7 +297,7 @@ li {
 
 
 
-@media (min-width:784px) {
+@media (max-width:784px) {
  
     .settings-top-bar-container {
     display: flex;

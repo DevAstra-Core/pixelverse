@@ -381,7 +381,7 @@ display: flex;
 
 
 
-@media (min-width:784px) {
+@media (max-width:784px) {
     
     main {
     min-height: 100vh;}
@@ -430,6 +430,6 @@ display: flex;
     .similar-movie-card-poster img, .suggestion-movie-card-poster img {
     height: 160px;
     width: 110px;}
-    
+
 
 }

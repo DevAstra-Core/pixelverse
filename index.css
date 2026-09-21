@@ -647,7 +647,7 @@ main{
 
 
 
-@media (min-width:784px) {
+@media (max-width:784px) {
 
     main {
     display: flex;
