@@ -11,7 +11,7 @@ html, body,.saved-box {
   -ms-overflow-style: none;
 }
 main{
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
@@ -192,4 +192,77 @@ display: flex;
 @keyframes pulse-icon {
     0%, 100% { opacity: 0.4; transform: scale(1); }
     50% { opacity: 0.8; transform: scale(1.08); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width:784px) {
+
+    main {
+    min-height: 100vh;}
+
+    .director-top-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 3%;
+    font-size: 4vh;
+     padding: 0px; 
+}
+
+    #back-to-home {
+    padding: 8px;
+    }
+    #back-icon {
+    height: 25px;
+    width: 25px;
+    }
+    .saved-box {
+    margin: 10px;
+    min-height: 85vh;
+    padding: 10px 0;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+    .director-movie-poster-holder {
+    width: 100%;
+    height: 180px;}
+
+    .director-movie-poster-holder img {
+    height: 180px;
+    width: 100%;}
+    .director-movie-card {
+        background: #ffffff00;}
+
+
+
 }
