@@ -658,9 +658,10 @@ main{
 
 
 
-    #hero-section{
-        height:60vh;
-    }
+    #herosection {
+    --squeeze: 0;
+    background: #111;
+    height: 75vh;}
 
     #h-movie-title {
     font-size: 30px;
