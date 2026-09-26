@@ -35,6 +35,11 @@ let currentUserToken = null;
 let inWishlist = false;
 let isLiked = false;
 
+// Tracks whether the AI-enriched summary/keywords have already loaded,
+// so the "basics" call can't overwrite them with a stale placeholder
+// if it happens to finish after the enrichment call.
+let enrichmentLoaded = false;
+
 // ---------- Get current session token (needed for library calls AND to respect adult-content pref) ----------
 async function getToken() {
   if (currentUserToken) return currentUserToken;
@@ -125,8 +130,13 @@ async function loadMovieBasics() {
       };
     }
 
-    detailsEl.textContent = "Generating summary...";
-    keywordBox.innerHTML = "<p style='opacity:0.5;'>Loading tags...</p>";
+    // Only show the placeholder if the enrichment call hasn't already
+    // filled in the real summary/keywords (avoids overwriting real
+    // content when loadMovieEnrichment() finishes first).
+    if (!enrichmentLoaded) {
+      detailsEl.textContent = "Generating summary...";
+      keywordBox.innerHTML = "<p style='opacity:0.5;'>Loading tags...</p>";
+    }
 
   } catch (err) {
     console.error("Failed to load movie basics:", err);
@@ -142,9 +152,15 @@ async function loadMovieEnrichment() {
     const response = await fetchWithTimeout(`${API_BASE}/api/ai/movie/${tmdbMovieId}`, 25000, headers);
     const movie = await response.json();
 
-    if (!response.ok) return;
+    if (!response.ok) {
+      detailsEl.textContent = "Couldn't load the summary right now.";
+      keywordBox.innerHTML = "";
+      enrichmentLoaded = true;
+      return;
+    }
 
     detailsEl.textContent = movie.ai_summary || "No description available.";
+    enrichmentLoaded = true;
 
     keywordBox.innerHTML = "";
     (movie.ai_keywords || []).forEach((keyword) => {
@@ -165,6 +181,7 @@ async function loadMovieEnrichment() {
       detailsEl.textContent = "Couldn't load the summary right now.";
     }
     keywordBox.innerHTML = "";
+    enrichmentLoaded = true;
   }
 }
 
@@ -350,17 +367,23 @@ function stopTrailerTimer() {
 let ytPlayer = null;
 let trailerIsPlaying = false;
 
+let ytApiPromise = null;
 function loadYouTubeAPI() {
-  return new Promise((resolve) => {
-    if (window.YT && window.YT.Player) {
+  if (window.YT && window.YT.Player) return Promise.resolve();
+  if (ytApiPromise) return ytApiPromise;
+
+  ytApiPromise = new Promise((resolve) => {
+    const prevCallback = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (typeof prevCallback === "function") prevCallback();
       resolve();
-      return;
-    }
+    };
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     document.head.appendChild(tag);
-    window.onYouTubeIframeAPIReady = () => resolve();
   });
+
+  return ytApiPromise;
 }
 
 async function autoPlayTrailer() {
@@ -388,6 +411,7 @@ async function autoPlayTrailer() {
 
     ytPlayer = new YT.Player("auto-trailer-player", {
       videoId: data.youtube_key,
+      host: "https://www.youtube-nocookie.com",
       playerVars: {
         autoplay: 1,
         mute: 1,
@@ -564,25 +588,3 @@ document.getElementById("back-to-home").addEventListener("click", () => {
     window.location.href = "index.html";
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
