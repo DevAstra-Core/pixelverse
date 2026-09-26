@@ -100,9 +100,7 @@ class PixelVerseAdBlocker {
 
 // Resolve ad-rules.json relative to THIS script file, not the page URL.
 // (Keep ad-rules.json in the same folder as adblocker.js.)
-const PV_ADBLOCK_BASE = document.currentScript
-    ? new URL(".", document.currentScript.src).href
-    : "./";
+const PV_ADBLOCK_BASE = new URL(".", import.meta.url).href;
 
 
 export async function startPixelVerseAdBlocker() {
