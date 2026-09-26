@@ -105,7 +105,7 @@ const PV_ADBLOCK_BASE = document.currentScript
     : "./";
 
 
-async function startPixelVerseAdBlocker() {
+export async function startPixelVerseAdBlocker() {
     try {
         // Make sure document.body exists before observing it
         if (document.readyState === "loading") {
